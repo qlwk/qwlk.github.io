@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Map with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <div class="navbar">
+        <button onclick="showScreen(1)">Screen 1</button>
+        <button onclick="showScreen(2)">Screen 2</button>
+        <button onclick="showScreen(3)">Screen 3</button>
+    </div>
+    <div id="map"></div>
+
+    <div class="connection-window">
+        <input type="text" placeholder="Connection IP">
+        <button onclick="Connect()">Connect</button>
+    </div>
+
+    <div class="input-window">
+        <input type="text" placeholder="Teammate 1">
+        <input type="text" placeholder="Teammate 2">
+        <input type="text" placeholder="Teammate 3">
+        <input type="text" placeholder="Teammate 4">
+        <button onclick="handleEnter()">Enter</button>
+    </div>
+
+    <div class="settings-window">
+        <div>
+            <input type="checkbox" id="showTeam" name="showTeam" checked />
+            <label for="showTeam">Show Teammates</label>
+        </div>
+        <div>
+            <input type="checkbox" id="followPlayer" name="followPlayer" checked />
+            <label for="followPlayer">Follow Player</label>
+        </div>
+        <div>
+            <input type="checkbox" id="showLoot" name="showLoot" checked />
+            <label for="showLoot">Show loot</label>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 1);
+
+        L.imageOverlay('https://raw.githubusercontent.com/qlwk/qwlk.github.io/f19df41a830de5a3cb4eff11949aaf993080b342/Factory.svg', [[-90, -180], [90, 180]]).addTo(map);
+
+        map.fitBounds([[-90, -180], [90, 180]]);
+
+        function showScreen(screenNumber) {
+            // Implement your logic to switch between screens here
+            console.log('Switching to Screen ' + screenNumber);
+        }
+
+        function handleEnter() {
+            var input1Value = document.querySelector('.input-window input:nth-child(1)').value;
+            var input2Value = document.querySelector('.input-window input:nth-child(2)').value;
+            var input3Value = document.querySelector('.input-window input:nth-child(3)').value;
+            var input4Value = document.querySelector('.input-window input:nth-child(4)').value;
+
+            console.log('Input 1: ' + input1Value);
+            console.log('Input 2: ' + input2Value);
+            console.log('Input 3: ' + input3Value);
+            console.log('Input 4: ' + input4Value);
+        }
+
+        function Connect() {
+            var connectValue = document.querySelector('.connection-window input:nth-child(1)').value;
+            console.log('Connection IP: ' + connectValue);
+        }
+    </script>
+</body>
+</html>
